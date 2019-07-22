@@ -15,16 +15,13 @@ export default {
     data(){
         return{
             showList:this.$store.state.showList,
-            item:{
-                content: '',
-                finished:false,
-                isEditing:false
-            }
+            item:this.$store.state.inputItem
         }
     },
     methods:{
         toggleFinshed(item){
             item.finished=!item.finished;
+            this.$store.commit("toggleFinshed",item)
         },
         toEdit(item){
             item.isEditing=true
@@ -35,3 +32,20 @@ export default {
     }
 }
 </script>
+<style scoped>
+.list {
+    margin:0 auto;
+  }
+  .list li{
+    text-align: left;
+    margin-left: 220px;
+    position: relative;
+    left: -20%;
+    padding: 10px 0;
+  }
+
+  .finish{
+    text-decoration: line-through;
+    color: #ccc;
+  }
+</style>

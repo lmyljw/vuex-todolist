@@ -3,23 +3,9 @@
   <div class="input-text">
     <h2 class="header1">Jquery To Do List</h2>
     <p>Simple Todo List with adding and filter by diff status</p>
-    <!-- <label for="inputNum"></label>
-    <input type="text"
-      id="inputNum"
-      name="inputNum"
-      class="edit"
-      v-model="inputItem.content"
-      @keydown.enter="addItem">
-    <button class="add" @click="addItem" >add</button> -->
     <InputText></InputText>
     <Items></Items>
-    <!-- <ol class="list">
-      <li v-for="(item, index) in showList" v-bind:key="index">
-        <input type="checkbox" @click="toggleFinshed(item)" :checked="item.finished" >
-        <span v-show="!item.isEditing" @dblclick="toEdit(item)" :class="{finish:item.finished}">{{item.content}}</span>
-        <span><input type="text" v-show="item.isEditing" @keydown.enter="edited(item)"  v-model="item.content" ></span>
-      </li>
-    </ol> -->
+    <!-- <FilterBtn></FilterBtn> -->
     <p><button class="allBtn" @click="showAll" :class="{selected:showing=='All'}">All</button>
     <button class="activeBtn" @click="showActive" :class="{selected:showing=='Active'}">Active</button>
     <button class="completeBtn" @click="showComplete" :class="{selected:showing=='Complete'}">Complete</button></p>
@@ -30,42 +16,26 @@
 <script>
 import InputText from './InputText';
 import Items from './Items';
+// import FilterBtn from './FilterBtn';
  export default {
     data () {
       return {
-        inputList: [],
-        showList:[],
+        inputList: this.$store.state.inputList,
+        showList:this.$store.state.showList,
         showing:"All",
-		    inputItem: {
-          content: '',
-          finished:false,
-          isEditing:false,
-		    },
+		    // inputItem: {
+        //   content: '',
+        //   finished:false,
+        //   isEditing:false,
+		    // },
 	    }
     },
     components:{
       InputText,
-      Items
+      Items,
+      // FilterBtn
     },
     methods: {
-      // addItem: function () {
-      //   this.inputList.push(this.inputItem);
-      //   this.showList.push(this.inputItem);
-			// 	this.inputItem = {
-      //     content: '',
-      //     finished:false,
-      //     isEditing:false
-			// 	};
-      // },
-      // toggleFinshed(item){
-      //   item.finished=!item.finished
-      // },
-      // toEdit(item){
-      //   item.isEditing=true
-      // },
-      // edited(item){
-      //   item.isEditing=false
-      // },
       showAll(){
         this.showList=this.inputList;
         this.showing="All"
@@ -100,23 +70,6 @@ import Items from './Items';
     margin:0 auto;
     width: 600px;
   }
-  
-  .list {
-    margin:0 auto;
-  }
-  .list li{
-    text-align: left;
-    margin-left: 220px;
-    position: relative;
-    left: -20%;
-    padding: 10px 0;
-  }
-
-  .finish{
-    text-decoration: line-through;
-    color: #ccc;
-  }
-  
   .allBtn,.activeBtn,.completeBtn{
     background: #fff;
     text-decoration: none;
