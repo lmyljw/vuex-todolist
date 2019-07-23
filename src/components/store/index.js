@@ -22,17 +22,14 @@ export default new Vuex.Store({
             item.finished=!item.finished;
         },
         showAll(state) {
-            //state.showList=state.inputList;
             state.showing="All";
             
         },
         showActive(state) {
-            //state.showList=state.inputList.filter(item=>!item.finished);
             state.showing="Active";
             
         },
         showComplete(state) {
-            //state.showList=state.inputList.filter(item=>item.finished)
             state.showing="Complete"
         },
         edited(state,payload){
@@ -46,13 +43,13 @@ export default new Vuex.Store({
     },
     actions:{
         addItem({commit},payload){
-            // axios.post('http://localhost:3001/todos',payload).then((response)=>{
-            //     commit('addItem',payload)
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // });
-            commit('addItem',payload)
+            axios.post('http://localhost:3001/todos',payload).then((response)=>{
+                commit('addItem',payload)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            // commit('addItem',payload)
         },
         toggleFinshed(context,payload){
             context.commit('toggleFinshed',payload);
@@ -69,8 +66,16 @@ export default new Vuex.Store({
         edited(context,payload){
             context.commit('edited',payload);
         },
-        initItem(context,payload){
-            context.commit('initItem',payload)
+        initItem(context){
+            axios.get('http://localhost:3001/todos')
+            .then( (response)=> {
+            console.log(response);
+            context.commit('initItem',response)
+            })
+            .catch(function (error) {
+            console.log(error);
+        });
+            
         }
     }
 })

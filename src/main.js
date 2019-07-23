@@ -7,6 +7,8 @@ import store from './components/store'
 import Welcome from './components/Welcome.vue'
 import TodoList from './components/TodoList.vue'
 import Home from './components/Home.vue'
+import Left from './components/Left.vue'
+import My from './components/My.vue'
 
 Vue.config.productionTip = false
 
@@ -18,14 +20,26 @@ const routes=[
   component:Welcome
 },
 {
-  path:'/todolist/:userName',
-  name:'todolist',
-  component:TodoList
+  path:'/home/:userName',
+  redirect: '/home/:userName/todolist',
+  name:'home',
+  component:Home,
+  children:[
+    {
+      path:'todolist',
+      name:'todolist',
+      component:TodoList
+    },
+    {
+      path:'my',
+      name:'my',
+      component:My
+    }
+  ]
 },
 {
-  path:'/home',
-  name:'home',
-  component:Home
+  path:'/left',
+  component:Left
 }
 ]
 const router =new VueRouter({routes})

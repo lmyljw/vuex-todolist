@@ -2,6 +2,7 @@
     <div>
         <button class="backBtn"  @click="backToWelcome">back</button>
         <span class="userName">用户名：{{getUserName}}</span>
+    
     </div>
 </template>
 <script>
