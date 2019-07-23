@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import store from './components/store'
 import Welcome from './components/Welcome.vue'
 import TodoList from './components/TodoList.vue'
+import Home from './components/Home.vue'
 
 Vue.config.productionTip = false
 
@@ -20,7 +21,13 @@ const routes=[
   path:'/todolist/:userName',
   name:'todolist',
   component:TodoList
-}]
+},
+{
+  path:'/home',
+  name:'home',
+  component:Home
+}
+]
 const router =new VueRouter({routes})
 
 new Vue({
