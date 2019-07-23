@@ -24,20 +24,23 @@ export default new Vuex.Store({
             }
         },
         toggleFinshed(state,payload){
-            let item = state.inputList.filter(item=>payload.inputItem.content==item.content);
+            let item = state.inputList.filter(item=>payload.content==item.content);
             item.finished=!item.finished;
         },
         showAll(state) {
-            state.showing="All";
             state.showList=state.inputList;
+            state.showing="All";
+            
         },
         showActive(state) {
-            state.showing="Active";
             state.showList=state.inputList.filter(item=>!item.finished);
+            state.showing="Active";
+            
         },
         showComplete(state) {
-            state.showing="Complete"
             state.showList=state.inputList.filter(item=>item.finished)
+            state.showing="Complete"
+            
         }
     }
 })

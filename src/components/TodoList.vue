@@ -37,15 +37,18 @@ import Items from './Items';
     },
     methods: {
       showAll(){
-        this.showList=this.inputList;
+        this.$store.commit('showAll');
+        // this.showList=this.inputList;
         this.showing="All"
       },
       showActive(){
-        this.showList=this.inputList.filter(item=>!item.finished);
+        this.$store.commit('showActive');
+        // this.showList=this.inputList.filter(item=>!item.finished);
         this.showing='Active'
       },
       showComplete(){
-        this.showList=this.inputList.filter(item=>item.finished);
+        this.$store.commit('showComplete');
+        // this.showList=this.inputList.filter(item=>item.finished);
         this.showing='Complete'
       }
     }

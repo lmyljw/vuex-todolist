@@ -10,24 +10,38 @@
     </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
     name:"items",
     data(){
         return{
             showList:this.$store.state.showList,
-            item:this.$store.state.inputItem
+            item:{
+                content: '',
+                finished:false,
+                isEditing:false,
+            }
         }
     },
+    // computed:{
+    //     ...mapGetters(['']),
+    //     showList(){
+
+    //         return 
+    //     }
+    // },
     methods:{
         toggleFinshed(item){
             item.finished=!item.finished;
-            this.$store.commit("toggleFinshed",item)
+            this.$store.commit('toggleFinshed',item)
         },
         toEdit(item){
             item.isEditing=true
         },
          edited(item){
             item.isEditing=false
+            this.$store.commit('edited',item)
          },
     }
 }
