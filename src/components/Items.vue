@@ -11,12 +11,11 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
-
+import axios from 'axios'
 export default {
     name:"items",
     data(){
         return{
-            showList:this.$store.state.showList,
             item:{
                 content: '',
                 finished:false,
@@ -24,24 +23,27 @@ export default {
             }
         }
     },
-    // computed:{
-    //     ...mapGetters(['']),
-    //     showList(){
-
-    //         return 
-    //     }
-    // },
+    computed:{
+        showList:function(){
+            if(this.$store.state.showing=='All')
+            return this.$store.state.inputList
+            if(this.$store.state.showing=='Active')
+            return this.$store.state.inputList.filter(item=>!item.finished)
+            if(this.$store.state.showing=='Complete')
+            return this.$store.state.inputList.filter(item=>item.finished)
+        }
+    },
     methods:{
         toggleFinshed(item){
             item.finished=!item.finished;
-            this.$store.commit('toggleFinshed',item)
+            this.$store.dispatch('toggleFinshed',item)
         },
         toEdit(item){
             item.isEditing=true
         },
          edited(item){
             item.isEditing=false
-            this.$store.commit('edited',item)
+            this.$store.dispatch('edited',item)
          },
     }
 }

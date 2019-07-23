@@ -5,10 +5,7 @@
     <p>Simple Todo List with adding and filter by diff status</p>
     <InputText></InputText>
     <Items></Items>
-    <!-- <FilterBtn></FilterBtn> -->
-    <p><button class="allBtn" @click="showAll" :class="{selected:showing=='All'}">All</button>
-    <button class="activeBtn" @click="showActive" :class="{selected:showing=='Active'}">Active</button>
-    <button class="completeBtn" @click="showComplete" :class="{selected:showing=='Complete'}">Complete</button></p>
+    <FilterBtn></FilterBtn>
   </div>
 </div>
 </template>
@@ -16,41 +13,31 @@
 <script>
 import InputText from './InputText';
 import Items from './Items';
-// import FilterBtn from './FilterBtn';
+import FilterBtn from './FilterBtn';
+import axios from 'axios'
  export default {
     data () {
       return {
-        inputList: this.$store.state.inputList,
-        showList:this.$store.state.showList,
-        showing:"All",
-		    // inputItem: {
-        //   content: '',
-        //   finished:false,
-        //   isEditing:false,
-		    // },
 	    }
     },
+    
+    // created:function(){
+    //   axios.get('http://localhost:3001/todos')
+    //   .then( (response)=> {
+    //     console.log(response);
+    //     this.$store.dispatch('initItem',response)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    // },
     components:{
       InputText,
       Items,
-      // FilterBtn
+      FilterBtn
     },
+    
     methods: {
-      showAll(){
-        this.$store.commit('showAll');
-        // this.showList=this.inputList;
-        this.showing="All"
-      },
-      showActive(){
-        this.$store.commit('showActive');
-        // this.showList=this.inputList.filter(item=>!item.finished);
-        this.showing='Active'
-      },
-      showComplete(){
-        this.$store.commit('showComplete');
-        // this.showList=this.inputList.filter(item=>item.finished);
-        this.showing='Complete'
-      }
     }
  }
 </script>
@@ -73,28 +60,5 @@ import Items from './Items';
     margin:0 auto;
     width: 600px;
   }
-  .allBtn,.activeBtn,.completeBtn{
-    background: #fff;
-    text-decoration: none;
-    line-height: 28px;
-    width: 90px;
-    font-size: 18px;
-    border: 0;
-    outline: 0;
-    margin-left: 5px;
-    border-radius: 5px;
-    color:#fc999b;
-  }
-  .selected{
-    background: #fff;
-    text-decoration: none;
-    line-height: 28px;
-    width: 90px;
-    font-size: 18px;
-    border:2px solid#fc999b;
-    outline: 0;
-    margin-left: 5px;
-    border-radius: 5px;
-    color:#fc999b;
-  }
+
 </style>

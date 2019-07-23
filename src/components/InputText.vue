@@ -10,16 +10,33 @@
     <button class="add" @click="addItem" >add</button></div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name:"inputText",
     data(){
         return{
-            inputItem:this.$store.state.inputItem
+            inputItem:{
+                content:"",
+                finished:false,
+                isEditing:false
+            }
         }
+    },
+    computed:{
+      username(){
+        return this.$route.params.userName
+      }
     },
     methods:{
         addItem(){
-            this.$store.commit('addItem',this.inputItem);
+            // axios.post('http://localhost:3001/todos',this.inputItem)
+            // .then(function(response){
+            //     console.log(response);
+            // })
+            // .catch(function (error) {
+            //     console.log(error);
+            // });
+            this.$store.dispatch('addItem',this.inputItem);
             this.inputItem = {
                 content: '',
                 finished:false,

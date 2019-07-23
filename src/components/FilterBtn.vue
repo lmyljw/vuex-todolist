@@ -12,23 +12,19 @@ export default {
     data(){
         return{
             showing:this.$store.state.showing,
-            showList:this.$store.state.showList,
-            inputList:this.$store.state.inputList
         }
     },
     methods:{
         showAll(){
-            this.$store.commit('showAll');
+            this.$store.dispatch('showAll');
             this.showing="All"
         },
         showActive(){
-            this.$store.commit('showActive');
-            // this.showList=this.inputList.filter(item=>!item.finished);
+            this.$store.dispatch('showActive');
             this.showing='Active'
         },
         showComplete(){
-            this.$store.commit('showComplete');
-            // this.showList=this.inputList.filter(item=>item.finished);
+            this.$store.dispatch('showComplete');
             this.showing='Complete'
         }
     }
