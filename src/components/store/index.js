@@ -38,7 +38,10 @@ export default new Vuex.Store({
             item.isEditing=false;
         },
         initItem(state,payload){
-            state.inputList.push(...payload.data);
+            state.inputList=payload.data;
+        },
+        delItem(state,payload){
+            state.inputList=state.inputList.filter(item=>payload.content!=item.content)
         }
     },
     actions:{
@@ -74,8 +77,17 @@ export default new Vuex.Store({
             })
             .catch(function (error) {
             console.log(error);
-        });
-            
+            });
+        },
+        delItem(context,payload){
+            axios.delete('http://localhost:3001/todos/'+payload.id)
+            .then((response)=>{
+                console.log(response)
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+            context.commit('delItem',payload)
         }
     }
 })

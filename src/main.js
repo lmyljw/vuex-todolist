@@ -9,9 +9,11 @@ import TodoList from './components/TodoList.vue'
 import Home from './components/Home.vue'
 import Left from './components/Left.vue'
 import My from './components/My.vue'
-
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
 Vue.config.productionTip = false
 
+Vue.use(iView);
 Vue.use(Vuex)
 Vue.use(VueRouter)
 const routes=[

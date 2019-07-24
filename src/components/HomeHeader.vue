@@ -11,8 +11,10 @@ export default {
     computed:{
         getUserName(){
             return this.$route.params.userName
+            
         }
     },
+    
     methods:{
         backToWelcome(){
             let c=confirm("确认要转到欢迎页面吗？")

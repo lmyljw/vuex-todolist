@@ -5,6 +5,7 @@
                 <input type="checkbox" @click="toggleFinshed(item)" :checked="item.finished" >
                 <span v-show="!item.isEditing" @dblclick="toEdit(item)" :class="{finish:item.finished}">{{item.content}}</span>
                 <span><input type="text" v-show="item.isEditing" @keydown.enter="edited(item)"  v-model="item.content" ></span>
+                <span><button class="delBtn" @click="delItem(item)">delete</button></span>
             </li>
         </ol>
     </div>
@@ -45,6 +46,9 @@ export default {
             item.isEditing=false
             this.$store.dispatch('edited',item)
          },
+         delItem(item){
+             this.$store.dispatch('delItem',item)
+         }
     }
 }
 </script>
@@ -63,5 +67,18 @@ export default {
   .finish{
     text-decoration: line-through;
     color: #ccc;
+  }
+  .delBtn{
+    background: #fff;
+    position: relative;
+    right: -10%;
+    text-decoration: none;
+    line-height: 28px;
+    width: 90px;
+    font-size: 18px;
+    outline: 0;
+    margin-left: 5px;
+    border-radius: 5px;
+    color:#fc999b;
   }
 </style>

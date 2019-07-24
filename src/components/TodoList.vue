@@ -21,16 +21,9 @@ import axios from 'axios'
 	    }
     },
     
-    // created:function(){
-    //   axios.get('http://localhost:3001/todos')
-    //   .then( (response)=> {
-    //     console.log(response);
-    //     this.$store.dispatch('initItem',response)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // },
+    mounted:function(){
+        this.$store.dispatch('initItem')
+    },
     components:{
       InputText,
       Items,
